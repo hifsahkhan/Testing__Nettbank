@@ -136,5 +136,11 @@ public class EnhetstestBankController {
         //assert
         assertNull(resultat);
     }
+
+    @Test
+    public void betalingRegistrert(){
+        when(sjekk.loggetInn()).thenReturn(null);
+
+    }
 }
 
