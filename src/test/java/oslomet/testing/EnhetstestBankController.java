@@ -139,7 +139,11 @@ public class EnhetstestBankController {
 
     @Test
     public void betalingRegistrert(){
+
         when(sjekk.loggetInn()).thenReturn(null);
+
+
+
 
     }
 }
