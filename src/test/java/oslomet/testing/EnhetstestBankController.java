@@ -37,6 +37,17 @@ public class EnhetstestBankController {
     private Sikkerhet sjekk;
 
     @Test
+    public void hentTransaksjoner(){
+
+    }
+
+    @Test
+    public void hentTransaksjoner_Feil(){
+
+    }
+
+
+    @Test
     public void hentKundeInfo_loggetInn() {
 
         // arrange
@@ -208,6 +219,27 @@ public class EnhetstestBankController {
         assertEquals(null, resultat);
     }
 
-    //heihie
+    @Test
+    public void utforBetaling(){
+
+    }
+
+    @Test
+    public void utforBetaling_Feil(){
+
+    }
+
+    @Test
+    public void endreKundeInfo(){
+
+    }
+
+    @Test
+    public void endreKundeInfo_Feil(){
+
+    }
+
+
+
 }
 
