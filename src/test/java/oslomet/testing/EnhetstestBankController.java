@@ -169,14 +169,18 @@ public class EnhetstestBankController {
     //Hifs
     @Test
     public void registrerBetaling_Feil(){
+        ArrayList<Transaksjon>transaksjoner = new ArrayList<>();
+
+        Transaksjon betaling = new Transaksjon(20, "1234.56.78999",1200, "04.01.21", "Tilbakebetaling", "Avventer","1111.11.1111");
+        transaksjoner.add(betaling);
 
         when(sjekk.loggetInn()).thenReturn(null);
 
-        when(repository.registrerBetaling(null)).thenReturn(null);
+        when(repository.registrerBetaling(betaling)).thenReturn(null);
 
-        String resultat = bankController.registrerBetaling(null);
+        String resultat = bankController.registrerBetaling(betaling);
 
-        assertNull(resultat);
+        assertEquals(null,resultat);
     }
     //Hifs
     @Test
@@ -190,9 +194,10 @@ public class EnhetstestBankController {
         transaksjoner.add(betaling2);
         transaksjoner.add(betaling3);
 
-        when(sjekk.loggetInn()).thenReturn("01010123456");
+        String personnummer = "01010123456";
+        when(sjekk.loggetInn()).thenReturn(personnummer);
 
-        when(repository.hentBetalinger(anyString())).thenReturn(transaksjoner);
+        when(repository.hentBetalinger(personnummer)).thenReturn(transaksjoner);
 
         // act
         List<Transaksjon> resultat = bankController.hentBetalinger();
@@ -212,15 +217,17 @@ public class EnhetstestBankController {
         transaksjoner.add(betaling2);
         transaksjoner.add(betaling3);
 
-        when(sjekk.loggetInn()).thenReturn("01010123456");
+        String personnummer = null;
 
-        when(repository.hentBetalinger(anyString())).thenReturn(null);
+        when(sjekk.loggetInn()).thenReturn(personnummer);
+
+        when(repository.hentBetalinger(personnummer)).thenReturn(null);
 
         // act
         List<Transaksjon> resultat = bankController.hentBetalinger();
 
         // assert
-        assertNull(resultat);
+        assertEquals(null, resultat);
     }
 
 
