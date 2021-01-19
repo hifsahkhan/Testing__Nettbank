@@ -4,11 +4,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import oslomet.testing.API.BankController;
 import oslomet.testing.DAL.BankRepository;
 import oslomet.testing.Models.Konto;
 import oslomet.testing.Models.Kunde;
+import oslomet.testing.Models.Transaksjon;
 import oslomet.testing.Sikkerhet.Sikkerhet;
 
 import java.util.ArrayList;
@@ -138,13 +140,73 @@ public class EnhetstestBankController {
     }
 
     @Test
-    public void betalingRegistrert(){
+    public void betalingRegistrert(){ //ikke riktig
+        ArrayList<Transaksjon>transaksjoner = new ArrayList<Transaksjon>();
 
-        when(sjekk.loggetInn()).thenReturn(null);
+        Transaksjon betaling1 = new Transaksjon(20, "1234.56.78999",1200, "04.01.21", "Tilbakebetaling", "Avventer","1111.11.1111");
+        Transaksjon betaling2 = new Transaksjon(30, "1234.56.78888",1300, "04.01.21", "Tilbakebetaling", "Avventer","2222.22.22222");
+        Transaksjon betaling3 = new Transaksjon(40, "1234.56.77777",1400, "04.01.21", "Tilbakebetaling", "Avventer","3333.33.33333");
+        transaksjoner.add(betaling1);
+        transaksjoner.add(betaling2);
+        transaksjoner.add(betaling3);
 
+        when(sjekk.loggetInn()).thenReturn("01010123456");
 
+      //  Mockito.when(repository.registrerBetaling(betaling)).thenReturn("OK");
 
+    //    String resultat = bankController.registrerBetaling(betaling);
+
+      //  assertEquals("OK", resultat);
+    }
+
+    @Test
+    public void betalingRegistrert_Feil(){
 
     }
+
+    @Test
+    public void hentBetalinger(){
+        ArrayList<Transaksjon>transaksjoner = new ArrayList<>();
+
+        Transaksjon betaling1 = new Transaksjon(20, "1234.56.78999",1200, "04.01.21", "Tilbakebetaling", "Avventer","1111.11.1111");
+        Transaksjon betaling2 = new Transaksjon(30, "1234.56.78888",1300, "04.01.21", "Tilbakebetaling", "Avventer","2222.22.22222");
+        Transaksjon betaling3 = new Transaksjon(40, "1234.56.77777",1400, "04.01.21", "Tilbakebetaling", "Avventer","3333.33.33333");
+        transaksjoner.add(betaling1);
+        transaksjoner.add(betaling2);
+        transaksjoner.add(betaling3);
+
+        when(sjekk.loggetInn()).thenReturn("01010123456");
+
+        when(repository.hentBetalinger(anyString())).thenReturn(transaksjoner);
+
+        // act
+        List<Transaksjon> resultat = bankController.hentBetalinger();
+
+        // assert
+        assertEquals(transaksjoner, resultat);
+    }
+
+    @Test
+    public void hentBetalinger_Feil(){
+        ArrayList<Transaksjon>transaksjoner = new ArrayList<>();
+
+        Transaksjon betaling1 = new Transaksjon(20, "1234.56.78999",1200, "04.01.21", "Tilbakebetaling", "Avventer","1111.11.1111");
+        Transaksjon betaling2 = new Transaksjon(30, "1234.56.78888",1300, "04.01.21", "Tilbakebetaling", "Avventer","2222.22.22222");
+        Transaksjon betaling3 = new Transaksjon(40, "1234.56.77777",1400, "04.01.21", "Tilbakebetaling", "Avventer","3333.33.33333");
+        transaksjoner.add(betaling1);
+        transaksjoner.add(betaling2);
+        transaksjoner.add(betaling3);
+
+        when(sjekk.loggetInn()).thenReturn("01010123456");
+
+        when(repository.hentBetalinger(anyString())).thenReturn(null);
+
+        // act
+        List<Transaksjon> resultat = bankController.hentBetalinger();
+
+        // assert
+        assertEquals(null, resultat);
+    }
+
 }
 
