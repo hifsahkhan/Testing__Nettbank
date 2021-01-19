@@ -36,6 +36,7 @@ public class EnhetstestBankController {
     // denne skal Mock'es
     private Sikkerhet sjekk;
 
+    //Zuhuur tar denne!
     @Test
     public void hentTransaksjoner(){
 
