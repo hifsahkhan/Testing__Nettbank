@@ -20,6 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EnhetstestBankController {
@@ -245,10 +247,17 @@ public class EnhetstestBankController {
     //Hava
     @Test
     public void endreKundeInfo(){
+        Kunde enKunde = new Kunde("01010110523",
+                "Lene", "Jensen", "Askerveien 22", "3270",
+                "Asker", "22224444", "HeiHei");
 
+        when(repository.endreKundeInfo(any(Kunde.class))).thenReturn("OK");
+
+        String result = bankController.endre(enKunde);
+        assertEquals(null, result);
     }
 
-    //Hava jobb!
+
     @Test
     public void endreKundeInfo_Feil(){
 
