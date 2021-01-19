@@ -277,7 +277,7 @@ public class EnhetstestBankController {
         when(repository.endreKundeInfo(any(Kunde.class))).thenReturn("FEIL");
 
         String result = bankController.endre(enKunde);
-        assertEquals(null, result);
+        assertEquals(null, result );
 
     }
 
