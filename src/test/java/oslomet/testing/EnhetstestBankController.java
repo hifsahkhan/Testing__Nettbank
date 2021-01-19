@@ -150,32 +150,35 @@ public class EnhetstestBankController {
         //assert
         assertNull(resultat);
     }
-
+    //Hifs
     @Test
-    public void betalingRegistrert(){ //ikke riktig
-        ArrayList<Transaksjon>transaksjoner = new ArrayList<Transaksjon>();
+    public void registrerBetaling(){
+        ArrayList<Transaksjon>transaksjoner = new ArrayList<>();
 
-        Transaksjon betaling1 = new Transaksjon(20, "1234.56.78999",1200, "04.01.21", "Tilbakebetaling", "Avventer","1111.11.1111");
-        Transaksjon betaling2 = new Transaksjon(30, "1234.56.78888",1300, "04.01.21", "Tilbakebetaling", "Avventer","2222.22.22222");
-        Transaksjon betaling3 = new Transaksjon(40, "1234.56.77777",1400, "04.01.21", "Tilbakebetaling", "Avventer","3333.33.33333");
-        transaksjoner.add(betaling1);
-        transaksjoner.add(betaling2);
-        transaksjoner.add(betaling3);
+        Transaksjon betaling = new Transaksjon(20, "1234.56.78999",1200, "04.01.21", "Tilbakebetaling", "Avventer","1111.11.1111");
+        transaksjoner.add(betaling);
 
         when(sjekk.loggetInn()).thenReturn("01010123456");
 
-      //  Mockito.when(repository.registrerBetaling(betaling)).thenReturn("OK");
+        when(repository.registrerBetaling(betaling)).thenReturn("OK");
 
-    //    String resultat = bankController.registrerBetaling(betaling);
+       String resultat = bankController.registrerBetaling(betaling);
 
-      //  assertEquals("OK", resultat);
+       assertEquals("OK", resultat);
     }
-
+    //Hifs
     @Test
-    public void betalingRegistrert_Feil(){
+    public void registrerBetaling_Feil(){
 
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        when(repository.registrerBetaling(null)).thenReturn(null);
+
+        String resultat = bankController.registrerBetaling(null);
+
+        assertNull(resultat);
     }
-
+    //Hifs
     @Test
     public void hentBetalinger(){
         ArrayList<Transaksjon> transaksjoner = new ArrayList<>();
@@ -197,7 +200,7 @@ public class EnhetstestBankController {
         // assert
         assertEquals(transaksjoner, resultat);
     }
-
+    //Hifs
     @Test
     public void hentBetalinger_Feil(){
         ArrayList<Transaksjon>transaksjoner = new ArrayList<>();
@@ -217,7 +220,7 @@ public class EnhetstestBankController {
         List<Transaksjon> resultat = bankController.hentBetalinger();
 
         // assert
-        assertEquals(null, resultat);
+        assertNull(resultat);
     }
 
 
