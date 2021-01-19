@@ -270,6 +270,15 @@ public class EnhetstestBankController {
     @Test
     public void endreKundeInfo_Feil(){
 
+        Kunde enKunde = new Kunde("01010110523",
+                "Lene", "Jensen", "Askerveien 22", "3270",
+                "Asker", "22224444", "HeiHei");
+
+        when(repository.endreKundeInfo(any(Kunde.class))).thenReturn("FEIL");
+
+        String result = bankController.endre(enKunde);
+        assertEquals(null, result);
+
     }
 
 
