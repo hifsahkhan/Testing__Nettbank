@@ -41,11 +41,20 @@ public class EnhetstestBankController {
     //Zuhuur tar denne!
     @Test
     public void hentTransaksjoner(){
+        Konto enKonto = new Konto();
+        when(sjekk.loggetInn()).thenReturn("01010110523","19.01.21", "26.03.21");
+        when(repository.hentTransaksjoner("01010110523","19.01.21", "26.03.21")).
+                thenReturn(enKonto);
+        Konto resultat = bankController.hentTransaksjoner("01010110523","19.01.21", "26.03.21");
+        assertEquals(enKonto, resultat);
 
     }
 
     @Test
     public void hentTransaksjoner_Feil(){
+        when(sjekk.loggetInn()).thenReturn(null);
+        Konto resultat = bankController.hentTransaksjoner("01010110523","19.01.21", "26.03.21");
+        assertNull(resultat);
 
     }
 
