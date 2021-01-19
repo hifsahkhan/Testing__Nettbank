@@ -208,6 +208,5 @@ public class EnhetstestBankController {
         assertEquals(null, resultat);
     }
 
-    //heihie
 }
 
