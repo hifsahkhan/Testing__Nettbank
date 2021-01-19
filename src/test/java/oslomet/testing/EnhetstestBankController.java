@@ -177,7 +177,7 @@ public class EnhetstestBankController {
 
     @Test
     public void hentBetalinger(){
-        ArrayList<Transaksjon>transaksjoner = new ArrayList<>();
+        ArrayList<Transaksjon> transaksjoner = new ArrayList<>();
 
         Transaksjon betaling1 = new Transaksjon(20, "1234.56.78999",1200, "04.01.21", "Tilbakebetaling", "Avventer","1111.11.1111");
         Transaksjon betaling2 = new Transaksjon(30, "1234.56.78888",1300, "04.01.21", "Tilbakebetaling", "Avventer","2222.22.22222");
@@ -219,6 +219,8 @@ public class EnhetstestBankController {
         assertEquals(null, resultat);
     }
 
+
+    //Kunta
     @Test
     public void utforBetaling(){
 
@@ -229,11 +231,13 @@ public class EnhetstestBankController {
 
     }
 
+    //Hava
     @Test
     public void endreKundeInfo(){
 
     }
 
+    //Hava jobb!
     @Test
     public void endreKundeInfo_Feil(){
 
