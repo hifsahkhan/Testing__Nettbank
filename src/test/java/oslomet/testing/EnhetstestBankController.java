@@ -247,13 +247,29 @@ public class EnhetstestBankController {
     //Kunta
     @Test
     public void utforBetaling(){
+        Transaksjon betaling1 = new Transaksjon(20, "1234.56.78999",1200, "04.01.21", "Tilbakebetaling", "Avventer","1111.11.1111");
 
+        when(repository.utforBetaling(20)).thenReturn("OK");
+
+        // actual
+        String resultat = repository.utforBetaling(20);
+        
+        //assert
+        assertEquals("OK", resultat);
     }
 
 
     @Test
     public void utforBetaling_Feil(){
+        Transaksjon betaling1 = new Transaksjon(20, "1234.56.78999",1200, "04.01.21", "Tilbakebetaling", "Avventer","1111.11.1111");
 
+        when(repository.utforBetaling(20)).thenReturn("Feil");
+
+        //actual
+        String resultat = repository.utforBetaling(20);
+
+        //assert
+        assertEquals("Feil", resultat);
     }
 
     //Hava
