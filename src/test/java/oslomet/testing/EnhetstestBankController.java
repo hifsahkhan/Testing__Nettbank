@@ -128,6 +128,7 @@ public class EnhetstestBankController {
 
     @Test
     public void hentSaldi_LoggetInn(){
+        //arrange
         List<Konto> saldi = new ArrayList<>();
         Konto konto1 = new Konto("105010123456", "105010123456",
                 720, "Lønnskonto", "NOK", null);
@@ -152,6 +153,7 @@ public class EnhetstestBankController {
 
     @Test
     public void hentSaldi_IkkeLoggetInn(){
+        //arrange
 
         when(sjekk.loggetInn()).thenReturn(null);
 
@@ -247,6 +249,7 @@ public class EnhetstestBankController {
     public void utforBetaling(){
 
     }
+
 
     @Test
     public void utforBetaling_Feil(){

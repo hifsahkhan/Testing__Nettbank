@@ -23,9 +23,7 @@ public class Transaksjon
     public Transaksjon() {
     }
 
-    public int getTxID() {
-        return txID;
-    }
+    public int getTxID() { return txID; }
 
     public void setTxID(int txID) {
         this.txID = txID;
