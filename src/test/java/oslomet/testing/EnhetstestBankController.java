@@ -283,8 +283,5 @@ public class EnhetstestBankController {
         assertEquals(null, result );
 
     }
-
-
-
 }
 
