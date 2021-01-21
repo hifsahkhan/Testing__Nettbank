@@ -42,7 +42,6 @@ public class EnhetstestAdminKundeController {
     @Test
     public void hentAlleKunderOk(){
 
-        // arrange
         Kunde kunde1 = new Kunde("01010110523", "Line", "Jensen",
                 "Osloveien 82", "0850", "Oslo",
                 "99462336", "HeiHei123");
