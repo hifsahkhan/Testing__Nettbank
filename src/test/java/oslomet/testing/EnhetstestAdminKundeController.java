@@ -181,5 +181,4 @@ public class EnhetstestAdminKundeController {
         // arrange
         assertEquals("Ikke logget inn", resultat);
     }
-
 }
