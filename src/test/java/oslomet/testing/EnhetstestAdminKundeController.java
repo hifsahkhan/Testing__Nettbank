@@ -68,6 +68,8 @@ public class EnhetstestAdminKundeController {
     @Test
     public void hentAlleKunderFeil() {
 
+        when(sjekk.loggetInn()).thenReturn("01010110523");
+
         // arrage
         Mockito.when(repository.hentAlleKunder()).thenReturn(null);
 
@@ -93,7 +95,7 @@ public class EnhetstestAdminKundeController {
         // act
         String resultat = adminKundeController.lagreKunde(kunde1);
 
-        // arrange
+        // assert
         assertEquals("OK", resultat);
 
     }
@@ -105,6 +107,8 @@ public class EnhetstestAdminKundeController {
                 "Osloveien 82", "0850", "Oslo",
                 "99462336", "HeiHei123");
 
+        when(sjekk.loggetInn()).thenReturn("01010110523");
+
 
         //arrange
         Mockito.when(repository.registrerKunde(any(Kunde.class))).thenReturn("Ikke logget inn");
@@ -112,7 +116,7 @@ public class EnhetstestAdminKundeController {
         // act
         String resultat = adminKundeController.lagreKunde(kunde1);
 
-        // arrange
+        // assert
         assertEquals("Ikke logget inn", resultat);
     }
 
