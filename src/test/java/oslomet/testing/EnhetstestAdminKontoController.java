@@ -101,12 +101,54 @@ public class EnhetstestAdminKontoController {
 
     @Test
     public void endreKonto(){
+        ArrayList<Konto> konto = new ArrayList<>();
+        ArrayList<Transaksjon>transaksjoner = new ArrayList<>();
 
+        Transaksjon t1 = new Transaksjon(20, "1234.56.78999",1200, "04.01.21", "Tilbakebetaling", "Avventer","1111.11.1111");
+        Transaksjon t2 = new Transaksjon(30, "1234.56.79999",1300, "04.01.21", "Tilbakebetaling", "Avventer","1111.12.1111");
+        transaksjoner.add(t1);
+        transaksjoner.add(t2);
+
+        Konto konto1 = new Konto("01010110523", "1309.34.23456", 12_901.35, "Type?", "Euro", transaksjoner);
+        konto.add(konto1);
+
+        String p = "01010110523";
+
+        when(sjekk.loggetInn()).thenReturn(p);
+
+        //arrange
+        Mockito.when(repository.endreKonto(konto1)).thenReturn("Ok");
+
+        //act
+        String resultat = adminKontoController.endreKonto(konto1);
+
+        //arrange
+        assertEquals("Ok", resultat);
     }
 
     @Test
     public void endreKontoFeil(){
+        ArrayList<Konto> konto = new ArrayList<>();
+        ArrayList<Transaksjon>transaksjoner = new ArrayList<>();
 
+        Transaksjon t1 = new Transaksjon(20, "1234.56.78999",1200, "04.01.21", "Tilbakebetaling", "Avventer","1111.11.1111");
+        Transaksjon t2 = new Transaksjon(30, "1234.56.79999",1300, "04.01.21", "Tilbakebetaling", "Avventer","1111.12.1111");
+        transaksjoner.add(t1);
+        transaksjoner.add(t2);
+
+        Konto konto1 = new Konto("01010110523", "1309.34.23456", 12_901.35, "Type?", "Euro", transaksjoner);
+        konto.add(konto1);
+
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        //arrange
+        Mockito.when(repository.endreKonto(konto1)).thenReturn("Ikke innlogget");
+
+        //act
+        String resultat = adminKontoController.endreKonto(konto1);
+
+        //arrange
+        assertEquals("Ikke innlogget", resultat);
     }
 
     @Test
