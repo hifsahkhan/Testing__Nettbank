@@ -17,6 +17,7 @@ import oslomet.testing.Sikkerhet.Sikkerhet;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.WeakHashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -41,11 +42,37 @@ public class EnhetstestAdminKontoController {
 
     @Test
     public void hentAlleKonti(){
+        ArrayList<Konto> konto = new ArrayList<>();
+        List<Transaksjon> transaksjoner = new ArrayList<>();
+
+        Konto enkonto = new Konto("01010110523", "1309.34.23456", 15000, "brukerkonto",
+                "Nok", transaksjoner);
+        konto.add(enkonto);
+
+
+        when(sjekk.loggetInn()).thenReturn("01010110523");
+        when(repository.hentAlleKonti()).thenReturn(konto);
+
+       List <Konto> result = adminKontoController.hentAlleKonti();
+
+       assertEquals(konto, result);
 
     }
 
     @Test
     public void hentAlleKontiFeil(){
+        ArrayList<Konto> konto = new ArrayList<>();
+        List<Transaksjon> transaksjoner = new ArrayList<>();
+
+        Konto enkonto = new Konto("01010110523", "1309.34.23456", 15000, "brukerkonto",
+                "Nok", transaksjoner);
+        konto.add(enkonto);
+        when(sjekk.loggetInn()).thenReturn("01010110523");
+        when(repository.hentAlleKonti()).thenReturn(null);
+
+        List<Konto> result = adminKontoController.hentAlleKonti();
+        assertNull(result);
+
 
     }
 
@@ -153,11 +180,22 @@ public class EnhetstestAdminKontoController {
 
     @Test
     public void slettKonto(){
+        when(sjekk.loggetInn()).thenReturn("Ok");
+        when(adminKontoController.slettKonto("01010110523")).thenReturn(null);
+
+        String result = adminKontoController.slettKonto("01010110523");
+
+        assertNull(result);
 
     }
 
     @Test
     public void slettKontoFeil(){
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        String result = adminKontoController.slettKonto(null);
+
+        assertEquals("Ikke innlogget", result);
 
     }
 
