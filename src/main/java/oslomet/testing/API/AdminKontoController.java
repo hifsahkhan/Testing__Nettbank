@@ -17,7 +17,7 @@ public class AdminKontoController {
     @Autowired
     private Sikkerhet sjekk;
 
-    @GetMapping("/hentAlle")
+    @GetMapping("/hentAlle")                // Marius
     public List<Konto> hentAlleKonti() {
         String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {
@@ -26,7 +26,7 @@ public class AdminKontoController {
         return null;
     }
 
-    @PostMapping("/registrer")
+    @PostMapping("/registrer")          // Marius
     public String registrerKonto( Konto konto) {
         String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {
@@ -36,7 +36,7 @@ public class AdminKontoController {
         return "Ikke innlogget";
     }
 
-    @PostMapping("/endre")
+    @PostMapping("/endre")      // Marius
     public String endreKonto( Konto konto) {
         String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {
@@ -45,7 +45,7 @@ public class AdminKontoController {
         return "Ikke innlogget";
     }
 
-    @GetMapping("/slett")
+    @GetMapping("/slett")       // Zuhuur
     public String slettKonto(String kontonummer) {
         String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {

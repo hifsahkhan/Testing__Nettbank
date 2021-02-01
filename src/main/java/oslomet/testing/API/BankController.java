@@ -22,7 +22,7 @@ public class BankController {
     @Autowired
     Sikkerhet sjekk;
 
-    @GetMapping("/hentTransaksjoner")
+    @GetMapping("/hentTransaksjoner")       // Zuhuur
     public Konto hentTransaksjoner(String kontoNr, String fraDato, String tilDato) {
          String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {
@@ -31,7 +31,7 @@ public class BankController {
         return null;
     }
 
-    @GetMapping("/hentKonti")
+    @GetMapping("/hentKonti")       // Zuhuur
     public List<Konto> hentKonti() {
         String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {
@@ -40,7 +40,7 @@ public class BankController {
         return null;
     }
 
-    @GetMapping("/hentSaldi")
+    @GetMapping("/hentSaldi")       // Kunta
     public List<Konto> hentSaldi() {
         String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {
@@ -49,7 +49,7 @@ public class BankController {
         return null;
     }
 
-    @PostMapping("/registrerBetaling")
+    @PostMapping("/registrerBetaling")      // Kunta
     public String registrerBetaling( Transaksjon betaling) {
         String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {
@@ -58,7 +58,7 @@ public class BankController {
         return null;
     }
 
-    @GetMapping("/hentBetalinger")
+    @GetMapping("/hentBetalinger")      // Kunta
     public List<Transaksjon> hentBetalinger() {
         String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {
@@ -67,7 +67,7 @@ public class BankController {
         return null;
     }
 
-    @GetMapping("/utforBetaling")
+    @GetMapping("/utforBetaling")       // Hava
     public List<Transaksjon> utforBetaling(int txID) {
         String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {
@@ -78,7 +78,7 @@ public class BankController {
         return null;
     }
 
-    @GetMapping("/hentKundeInfo")
+    @GetMapping("/hentKundeInfo")       // Hava
     public Kunde hentKundeInfo() {
         String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {
@@ -88,7 +88,7 @@ public class BankController {
         return null;
     }
 
-    @PostMapping("/endreKundeInfo")
+    @PostMapping("/endreKundeInfo")     // Hava
     public String endre(Kunde innKunde) {
         String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {

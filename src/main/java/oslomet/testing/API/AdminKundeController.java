@@ -17,7 +17,7 @@ public class AdminKundeController {
     @Autowired
     private Sikkerhet sjekk;
 
-    @GetMapping("/hentAlle")
+    @GetMapping("/hentAlle")        // Hifsah
     public List<Kunde> hentAlle() {
         String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {
@@ -26,7 +26,7 @@ public class AdminKundeController {
         return null;
     }
 
-    @PostMapping("/lagre")
+    @PostMapping("/lagre")      // Hifsah
     public String lagreKunde( Kunde innKunde) {
         String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {
@@ -35,7 +35,7 @@ public class AdminKundeController {
         return "Ikke logget inn";
     }
 
-    @PostMapping("/endre")
+    @PostMapping("/endre")      // Hifsah
     public String endre( Kunde innKunde) {
         String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {
@@ -44,7 +44,7 @@ public class AdminKundeController {
         return "Ikke logget inn";
     }
 
-    @GetMapping("/slett")
+    @GetMapping("/slett")       // Hifsah
     public String slett(String personnummer) {
         String p = sjekk.loggetInn();
         if (p !=null) {
