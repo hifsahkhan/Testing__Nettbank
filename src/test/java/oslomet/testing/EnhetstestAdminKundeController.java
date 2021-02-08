@@ -71,7 +71,7 @@ public class EnhetstestAdminKundeController {
         when(sjekk.loggetInn()).thenReturn(null);
 
         // arrage
-        Mockito.when(repository.hentAlleKunder()).thenReturn(null);
+       // Mockito.when(repository.hentAlleKunder()).thenReturn(null);
 
         // act
         List<Kunde> resultat = adminKundeController.hentAlle();
@@ -111,7 +111,7 @@ public class EnhetstestAdminKundeController {
 
 
         //arrange
-        Mockito.when(repository.registrerKunde(kunde1)).thenReturn("Ikke logget inn");
+       // Mockito.when(repository.registrerKunde(kunde1)).thenReturn("Ikke logget inn");
 
         // act
         String resultat = adminKundeController.lagreKunde(kunde1);
@@ -149,7 +149,7 @@ public class EnhetstestAdminKundeController {
          when(sjekk.loggetInn()).thenReturn(null);
 
         //arrange
-        Mockito.when(repository.endreKundeInfo(kunde1)).thenReturn("Ikke logget inn");
+        //Mockito.when(repository.endreKundeInfo(kunde1)).thenReturn("Ikke logget inn");
 
         // act
         String resultat = adminKundeController.endre(kunde1);
@@ -179,7 +179,7 @@ public class EnhetstestAdminKundeController {
         when(sjekk.loggetInn()).thenReturn(null);
 
         //arrange
-        Mockito.when(repository.slettKunde(null)).thenReturn("Ikke logget inn");
+      //  Mockito.when(repository.slettKunde(null)).thenReturn("Ikke logget inn");
 
         // act
         String resultat = adminKundeController.slett(null);

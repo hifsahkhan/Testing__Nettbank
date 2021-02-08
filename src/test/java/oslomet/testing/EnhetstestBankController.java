@@ -201,7 +201,7 @@ public class EnhetstestBankController {
         //arrange
         when(sjekk.loggetInn()).thenReturn(null);
 
-        when(repository.registrerBetaling(null)).thenReturn(null);
+//        when(repository.registrerBetaling(null)).thenReturn(null);
 
         //act
         String resultat = bankController.registrerBetaling(null);
@@ -237,7 +237,8 @@ public class EnhetstestBankController {
 
     @Test
     public void hentBetalinger_Feil(){
-        when(repository.hentBetalinger(null)).thenReturn(null);
+        when(sjekk.loggetInn()).thenReturn(null);
+//        when(repository.hentBetalinger(null)).thenReturn(null);
 
         // act
         List<Transaksjon> resultat = bankController.hentBetalinger();
@@ -277,9 +278,7 @@ public class EnhetstestBankController {
     public void utforBetaling_Feil(){
         when(sjekk.loggetInn()).thenReturn(null);
 
-        when(repository.utforBetaling(20)).thenReturn(null);
-
-        when(repository.hentBetalinger(null)).thenReturn(null);
+//        when(repository.hentBetalinger(null)).thenReturn(null);
 
         // act
         List<Transaksjon> resultat = bankController.utforBetaling(20);
@@ -315,7 +314,7 @@ public class EnhetstestBankController {
                 "Lene", "Jensen", "Askerveien 22", "3270",
                 "Asker", "22224444", "HeiHei");
 
-        when(repository.endreKundeInfo(enKunde)).thenReturn(null);
+//        when(repository.endreKundeInfo(enKunde)).thenReturn(null);
 
         //act
         String result = bankController.endre(enKunde);

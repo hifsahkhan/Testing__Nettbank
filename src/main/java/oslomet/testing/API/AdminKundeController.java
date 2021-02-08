@@ -36,7 +36,7 @@ public class AdminKundeController {
     }
 
     @PostMapping("/endre")      // Hifsah
-    public String endre( Kunde innKunde) {
+    public String endre(Kunde innKunde) {
         String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {
             return repository.endreKundeInfo(innKunde);
