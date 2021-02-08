@@ -69,7 +69,7 @@ public class EnhetstestAdminKontoController {
         when(sjekk.loggetInn()).thenReturn(null);
 
         //arrange
-        when(repository.hentAlleKonti()).thenReturn(null);
+//        when(repository.hentAlleKonti()).thenReturn(null);
 
         //act
         List<Konto> result = adminKontoController.hentAlleKonti();
@@ -119,7 +119,7 @@ public class EnhetstestAdminKontoController {
         when(sjekk.loggetInn()).thenReturn(null);
 
         //arrange
-        Mockito.when(repository.registrerKonto(konto1)).thenReturn("Ikke innlogget");
+//        Mockito.when(repository.registrerKonto(konto1)).thenReturn("Ikke innlogget");
 
         //act
         String resultat = adminKontoController.registrerKonto(konto1);
@@ -171,7 +171,7 @@ public class EnhetstestAdminKontoController {
         when(sjekk.loggetInn()).thenReturn(null);
 
         //arrange
-        Mockito.when(repository.endreKonto(konto1)).thenReturn("Ikke innlogget");
+//        Mockito.when(repository.endreKonto(konto1)).thenReturn("Ikke innlogget");
 
         //act
         String resultat = adminKontoController.endreKonto(konto1);
