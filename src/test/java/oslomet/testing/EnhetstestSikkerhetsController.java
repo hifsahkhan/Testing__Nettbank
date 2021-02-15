@@ -123,5 +123,4 @@ public class EnhetstestSikkerhetsController {
         // assert
         assertNull(resultat);
     }
-
 }
