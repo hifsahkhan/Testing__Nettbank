@@ -40,8 +40,9 @@ public class EnhetstestSikkerhetsController {
         // assert
         assertEquals("OK", resultat);
     }
+
     @Test
-    public void loggInn_FeilPersonnummer(){
+    public void test_loggInnFeilPersonnummer(){
         session.setAttribute("Ikke innlogget","12345678901");
 
         // arrange
@@ -55,10 +56,8 @@ public class EnhetstestSikkerhetsController {
     }
 
     @Test
-    public void loggInn_FeilPassord(){
-        session.setAttribute("Ikke innlogget", "12345678901");
+    public void test_loggInnFeilPassord(){
         session.setAttribute("Ikke innlogget", "HeiHeiHei");
-
 
         // arrange
         when(repository.sjekkLoggInn(anyString(),anyString())).thenReturn("Feil i passord");
@@ -68,12 +67,10 @@ public class EnhetstestSikkerhetsController {
 
         //assert
         assertEquals("Feil i passord",resultat);
-
     }
 
     @Test
-    public void loggInn_FeilPersonnummerEllerPassord(){
-        //    session.setAttribute("");
+    public void test_loggInnFeilPersonnummerEllerPassord(){
         // arrange
         when(repository.sjekkLoggInn(anyString(),anyString())).thenReturn("Feil i personnummer eller passord");
 
@@ -117,5 +114,4 @@ public class EnhetstestSikkerhetsController {
         String resluts = sikkerhetsController.sjekkLoggInn("1235678901", "HeiHeiHei");
         assertEquals("OK", resluts);
     }
-
 }
