@@ -1,4 +1,6 @@
 package oslomet.testing;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -33,6 +35,28 @@ public class EnhetstestSikkerhetsController {
     // denne skal Mock'es
     private MockHttpSession session;
 
+    @Before
+    public void initSession() {
+        Map<String,Object> attributes = new HashMap<String,Object>();
+
+        doAnswer(new Answer<Object>(){
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                String key = (String) invocation.getArguments()[0];
+                return attributes.get(key);
+            }
+        }).when(session).getAttribute(anyString());
+
+        doAnswer(new Answer<Object>(){
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                String key = (String) invocation.getArguments()[0];
+                Object value = invocation.getArguments()[1];
+                attributes.put(key, value);
+                return null;
+            }
+        }).when(session).setAttribute(anyString(), any());
+    }
     @Test
     public void test_sjekkLoggetInn() {
         // arrange
@@ -52,7 +76,7 @@ public class EnhetstestSikkerhetsController {
         session.setAttribute("Ikke innlogget","12345678901");
 
         // arrange
-        when(repository.sjekkLoggInn(anyString(),anyString())).thenReturn("Feil i personnummer");
+//        when(repository.sjekkLoggInn(anyString(),anyString())).thenReturn("Feil i personnummer"); // MOCKITO STUBBING
 
         //act
         String resultat = sikkerhetsController.sjekkLoggInn("1234567890","HeiHeiHei");
@@ -64,12 +88,11 @@ public class EnhetstestSikkerhetsController {
     @Test
     public void test_loggInnFeilPassord(){
         session.setAttribute("Ikke innlogget", "HeiHeiHei");
-
         // arrange
-        when(repository.sjekkLoggInn(anyString(),anyString())).thenReturn("Feil i passord");
+       // when(repository.sjekkLoggInn(anyString(),anyString())).thenReturn("Feil i passord"); // MOCKITO STUBBING
 
         //act
-        String resultat = sikkerhetsController.sjekkLoggInn("12345678901","HeiHei");
+        String resultat = sikkerhetsController.sjekkLoggInn("12345678901","H");
 
         //assert
         assertEquals("Feil i passord",resultat); //En kommentar
@@ -93,7 +116,7 @@ public class EnhetstestSikkerhetsController {
     public void test_sjekkLoggInnAdmin(){
 
 
-        when(repository.sjekkLoggInn(anyString(),anyString())).thenReturn("Logget inn");
+//        when(repository.sjekkLoggInn(anyString(),anyString())).thenReturn("Logget inn"); // MOCKITO STUBBING
 
         session.setAttribute("Innlogget", "Admin");
         String results = sikkerhetsController.loggInnAdmin("Admin", "Admin");
@@ -103,7 +126,7 @@ public class EnhetstestSikkerhetsController {
     }
     @Test
     public void test_sjekkLoggInnAdminFeil(){
-        when(repository.sjekkLoggInn(anyString(),anyString())).thenReturn("Ikke logget inn");
+//        when(repository.sjekkLoggInn(anyString(),anyString())).thenReturn("Ikke logget inn"); // MOCKITO STUBBING
 
         session.setAttribute("Innlogget", "Admin");
 
@@ -114,6 +137,7 @@ public class EnhetstestSikkerhetsController {
         assertEquals("Ikke logget inn", resluts1);
 
     }
+    /*
     @Test
     public void test_sjekkFeilPersonnummerPassord(){
         when(repository.sjekkLoggInn(anyString(),anyString())).thenReturn("OK");
@@ -122,31 +146,12 @@ public class EnhetstestSikkerhetsController {
         assertEquals("OK", resluts);
     }
 
+     */
+
     @Test
     public void test_LoggetInn(){
-        Map<String,Object> attributes = new HashMap<String,Object>();
-
-        doAnswer(new Answer<Object>(){
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                String key = (String) invocation.getArguments()[0];
-                return attributes.get(key);
-            }
-        }).when(session).getAttribute(anyString());
-
-        doAnswer(new Answer<Object>(){
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                String key = (String) invocation.getArguments()[0];
-                Object value = invocation.getArguments()[1];
-                attributes.put(key, value);
-                return null;
-            }
-        }).when(session).setAttribute(anyString(), any());
-
         // arrange
         session.setAttribute("Innlogget", "12345678901");
-
 
         // act
         String resultat = sikkerhetsController.loggetInn();
@@ -158,7 +163,7 @@ public class EnhetstestSikkerhetsController {
     @Test
     public void test_LoggetInnFeil() {
         // arrange
-        session.setAttribute("Ikke innlogget", null);
+        session.setAttribute("Innlogget", null);
 
         // act
         String resultat = sikkerhetsController.loggetInn();
