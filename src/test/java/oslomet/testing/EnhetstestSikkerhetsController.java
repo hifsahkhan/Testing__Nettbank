@@ -46,6 +46,38 @@ public class EnhetstestSikkerhetsController {
         // assert
         assertEquals("OK", resultat);
     }
+    @Test
+    public void test_sjekkLoggInnAdmin(){
+
+
+        when(repository.sjekkLoggInn(anyString(),anyString())).thenReturn("Logget inn");
+
+        session.setAttribute("Innlogget", "Admin");
+        String results = sikkerhetsController.loggInnAdmin("Admin", "Admin");
+
+        assertEquals("Logget inn", results);
+
+    }
+    @Test
+    public void test_sjekkLoggInnAdminFeil(){
+        when(repository.sjekkLoggInn(anyString(),anyString())).thenReturn("Ikke logget inn");
+
+        session.setAttribute("Innlogget", "Admin");
+
+        String resluts = sikkerhetsController.loggInnAdmin("Admin", "Admin123");
+        String resluts1 = sikkerhetsController.loggInnAdmin("Admin2", "Admin");
+
+        assertEquals("Ikke logget inn", resluts);
+        assertEquals("Ikke logget inn", resluts1);
+
+    }
+    @Test
+    public void test_sjekkFeilPersonnummerPassord(){
+        when(repository.sjekkLoggInn(anyString(),anyString())).thenReturn("OK");
+        session.setAttribute("Innlogget", "12345678901");
+        String resluts = sikkerhetsController.sjekkLoggInn("1235678901", "HeiHeiHei");
+        assertEquals("OK", resluts);
+    }
 
     @Test
     public void test_LoggetInn(){
