@@ -72,7 +72,8 @@ public class EnhetstestSikkerhetsController {
         String resultat = sikkerhetsController.sjekkLoggInn("12345678901","HeiHei");
 
         //assert
-        assertEquals("Feil i passord",resultat);
+        assertEquals("Feil i passord",resultat); //En kommentar
+        //heihei
     }
 
     @Test
