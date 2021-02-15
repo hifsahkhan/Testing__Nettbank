@@ -2,12 +2,16 @@ package oslomet.testing.DAL;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Repository;
 import oslomet.testing.Models.Konto;
 import oslomet.testing.Models.Kunde;
+
+import javax.sql.DataSource;
 
 
 import org.springframework.core.io.Resource;
@@ -188,3 +192,4 @@ public class AdminRepository {
         }
     }
 }
+
