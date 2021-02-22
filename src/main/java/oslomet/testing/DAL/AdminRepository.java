@@ -79,7 +79,7 @@ public class AdminRepository {
         String sql;
         int etPostSted;
         try {
-            sql = "SELECT count(*) FROM Poststed WHERE postnr = ?";
+            sql = "SELECT count(*) FROM Poststed WHERE postnr = ?"; //poststed/postnr / send inn kunde uten parameterne
             etPostSted = db.queryForObject(sql, Integer.class, kunde.getPostnr());
         }
         catch(Exception e){

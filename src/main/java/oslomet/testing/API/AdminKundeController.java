@@ -29,7 +29,7 @@ public class AdminKundeController {
     }
 
     @PostMapping("/lagre")      // Hifsah
-    public String lagreKunde( Kunde innKunde) {
+    public String lagreKunde(Kunde innKunde) {
         String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {
             return repository.registrerKunde(innKunde);
@@ -53,13 +53,6 @@ public class AdminKundeController {
             return repository.slettKunde(personnummer);
         }
         return "Ikke logget inn";
-    }
-    @Autowired
-    private DataSource dataSource;
-
-    @GetMapping("/initDB")
-    public String initDB(){
-        return repository.initDB(dataSource);
     }
 }
 
