@@ -117,16 +117,7 @@ public class EnhetstestSikkerhetsController {
         assertEquals("Ikke logget inn", resultat1);
         assertEquals("Ikke logget inn", resultat2);
     }
-    /*
-    @Test
-    public void test_sjekkFeilPersonnummerPassord(){
-        when(repository.sjekkLoggInn(anyString(),anyString())).thenReturn("OK");
-        session.setAttribute("Innlogget", "12345678901");
-        String resluts = sikkerhetsController.sjekkLoggInn("1235678901", "HeiHeiHei");
-        assertEquals("OK", resluts);
-    }
 
-     */
 
     @Test
     public void test_LoggetInn(){

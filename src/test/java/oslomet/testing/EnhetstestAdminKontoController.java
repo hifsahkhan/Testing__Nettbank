@@ -68,8 +68,6 @@ public class EnhetstestAdminKontoController {
     public void hentAlleKontiFeil(){
         when(sjekk.loggetInn()).thenReturn(null);
 
-        //arrange
-//        when(repository.hentAlleKonti()).thenReturn(null);
 
         //act
         List<Konto> result = adminKontoController.hentAlleKonti();
@@ -79,7 +77,7 @@ public class EnhetstestAdminKontoController {
     }
 
     @Test
-    public void registrerKonto(){
+    public void registrerKonto_OK(){
         ArrayList<Konto> konto = new ArrayList<>();
         ArrayList<Transaksjon>transaksjoner = new ArrayList<>();
 
@@ -104,7 +102,7 @@ public class EnhetstestAdminKontoController {
     }
 
     @Test
-    public void registrerKontoFeil(){
+    public void registrerKonto_Feil(){
         ArrayList<Konto> konto = new ArrayList<>();
         ArrayList<Transaksjon>transaksjoner = new ArrayList<>();
 
@@ -118,8 +116,6 @@ public class EnhetstestAdminKontoController {
 
         when(sjekk.loggetInn()).thenReturn(null);
 
-        //arrange
-//        Mockito.when(repository.registrerKonto(konto1)).thenReturn("Ikke innlogget");
 
         //act
         String resultat = adminKontoController.registrerKonto(konto1);
@@ -170,8 +166,6 @@ public class EnhetstestAdminKontoController {
 
         when(sjekk.loggetInn()).thenReturn(null);
 
-        //arrange
-//        Mockito.when(repository.endreKonto(konto1)).thenReturn("Ikke innlogget");
 
         //act
         String resultat = adminKontoController.endreKonto(konto1);

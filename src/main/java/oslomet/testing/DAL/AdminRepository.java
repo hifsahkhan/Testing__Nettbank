@@ -174,7 +174,7 @@ public class AdminRepository {
             db.update(sql,kontonummer);
         }
         catch(Exception e){
-            return "Feil kononummer";
+            return "Feil kontonummer";
         }
         return "OK";
     }

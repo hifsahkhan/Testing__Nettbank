@@ -49,7 +49,7 @@ public class AdminKontoController {
         return "Ikke innlogget";
     }
 
-    @GetMapping("/slett")       // Zuhuur
+    @GetMapping("/slett")       // Marius
     public String slettKonto(String kontonummer) {
         String personnummer = sjekk.loggetInn();
         if (personnummer!=null) {
