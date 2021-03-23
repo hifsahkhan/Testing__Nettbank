@@ -103,6 +103,15 @@ public class EnhetstestSikkerhetsController {
     }
 
     @Test
+    public void test_loggetUT(){
+        // arrange
+        session.setAttribute("Utlogget", null);
+
+        sikkerhetsController.loggUt();
+
+    }
+
+    @Test
     public void test_sjekkLoggInnAdmin(){
         String results = sikkerhetsController.loggInnAdmin("Admin", "Admin");
 
